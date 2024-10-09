@@ -41,7 +41,7 @@ class _Mechanic_statusState extends State<Mechanic_status> {
                                 height: 80.w,
                                 width: 80.w,
                                 child: Image(
-                                  image: AssetImage("assets/person1.png"),
+                                  image: AssetImage("ASSETS/person1.png"),
                                   fit: BoxFit.cover,
                                 ),
                               ),

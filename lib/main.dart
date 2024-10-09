@@ -4,8 +4,17 @@ import 'package:vehicle_repair/Vechicle_repair.dart';
 import 'package:vehicle_repair/Vechicle_user/User_mechanic_list.dart';
 import 'Vechicle_repair_Admin/Admin_vechicle_nav.dart';
 import 'Vechicle_user/User_login.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {WidgetsFlutterBinding.ensureInitialized();
+
+
+// ...
+
+await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(const MyApp());
 }
 

@@ -155,7 +155,7 @@ class _Add_serviceState extends State<Add_service> {
             padding: const EdgeInsets.only(left: 50, right: 50),
             child: InkWell(
               onTap: () {
-                Navigator.of(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Mechanic_service(),));
               },
               child: Container(
                 width: 250.w,

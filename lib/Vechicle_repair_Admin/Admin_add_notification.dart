@@ -1,8 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'Admin_vechicle_nav.dart';
-
 
 class Admin_add_notification extends StatefulWidget {
   const Admin_add_notification({super.key});
@@ -12,6 +12,19 @@ class Admin_add_notification extends StatefulWidget {
 }
 
 class _Admin_add_notificationState extends State<Admin_add_notification> {
+  var matter_ctrl = TextEditingController();
+  var content_ctrl = TextEditingController();
+  Future<void> vechicle_repair() async {
+    FirebaseFirestore.instance.collection('notification').add({
+      "Matter": matter_ctrl.text,
+      "Content": content_ctrl.text,
+    });
+    Navigator.pop(context);
+
+    print(
+        "////////////////////////////////Added Notification Successfully/////////////////////");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,11 +36,14 @@ class _Admin_add_notificationState extends State<Admin_add_notification> {
             children: [
               Row(
                 children: [
-                  InkWell(onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return vachicle_nav();
-                    },));
-                  },
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return vachicle_nav();
+                        },
+                      ));
+                    },
                     child: Container(
                         width: 40.w,
                         height: 40.h,
@@ -45,13 +61,14 @@ class _Admin_add_notificationState extends State<Admin_add_notification> {
                     children: [
                       Text(
                         'Enter Matter',
-                        style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 15),
                       ),
                     ],
                   ),
                   SizedBox(height: 10.h),
                   TextFormField(
+                    controller: matter_ctrl,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10)),
@@ -70,25 +87,44 @@ class _Admin_add_notificationState extends State<Admin_add_notification> {
                     children: [
                       Text(
                         'Enter Content',
-                        style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 15),
                       ),
                     ],
                   ),
                   SizedBox(
                     height: 10.h,
                   ),
-                  TextField(maxLines: 20,decoration: InputDecoration.collapsed(hintText: '     context....',border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),fillColor: Colors.white,filled: true),)
+                  TextField(
+                    controller: content_ctrl,
+                    maxLines: 20,
+                    decoration: InputDecoration.collapsed(
+                        hintText: '     context....',
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        fillColor: Colors.white,
+                        filled: true),
+                  )
                 ],
               ),
               SizedBox(height: 60.h),
-              Container(
-                height: 35.h,
-                width: 120,
-                decoration: BoxDecoration(
-                    color: Colors.blue[700],
-                    borderRadius: BorderRadius.circular(10)),
-                child: Center(child: Text('Submit', style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),)),
+              InkWell(
+                onTap: () {
+                  vechicle_repair();
+                },
+                child: Container(
+                  height: 35.h,
+                  width: 120,
+                  decoration: BoxDecoration(
+                      color: Colors.blue[700],
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Center(
+                      child: Text(
+                    'Submit',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.white),
+                  )),
+                ),
               )
             ],
           ),

@@ -32,8 +32,7 @@ class _Admin_paymentState extends State<Admin_payment> {
               child: ListView.builder(
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Container(
-                      height: 100.h,width: 400.w,decoration: BoxDecoration(color: Colors.white),
+                    title: Card(
                       child: Padding(
                         padding: const EdgeInsets.only(left: 20),
                         child: Column(
